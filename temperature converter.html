@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #777575;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.384);
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    button {
+        width: 45%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #265c29;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .btn-group button:last-child {
+        margin-left: auto;
+    }
+
+    .conversion-result {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Temperature Converter</h2>
+    <div class="input-group">
+        <label for="celsius">Enter Celsius</label>
+        <input type="number" id="celsius">
+    </div>
+    <div class="input-group">
+        <label for="fahrenheit">Enter Fahrenheit</label>
+        <input type="number" id="fahrenheit">
+    </div>
+    <div class="input-group">
+        <label for="kelvin">Enter Kelvin</label>
+        <input type="number" id="kelvin">
+    </div>
+    <div class="btn-group">
+        <button onclick="convertToCelsius()">Celsius</button>
+        <button onclick="convertToFahrenheit()">Fahrenheit</button>
+    </div>
+    <button onclick="convertToKelvin()">Kelvin</button>
+    <div class="conversion-result" id="conversionResult"></div>
+</div>
+
+<script>
+    function convertToCelsius() {
+        var fahrenheit = document.getElementById("fahrenheit").value;
+        var celsius = (parseFloat(fahrenheit) - 32) * 5 / 9;
+        document.getElementById("celsius").value = celsius.toFixed(2);
+        showConversionResult(celsius.toFixed(2) + "°C");
+    }
+
+    function convertToFahrenheit() {
+        var celsius = document.getElementById("celsius").value;
+        var fahrenheit = parseFloat(celsius) * 9 / 5 + 32;
+        document.getElementById("fahrenheit").value = fahrenheit.toFixed(2);
+        showConversionResult(fahrenheit.toFixed(2) + "°F");
+    }
+
+    function convertToKelvin() {
+        var celsius = document.getElementById("celsius").value;
+        var kelvin = parseFloat(celsius) + 273.15;
+        document.getElementById("kelvin").value = kelvin.toFixed(2);
+        showConversionResult(kelvin.toFixed(2) + "K");
+    }
+
+    function showConversionResult(result) {
+        document.getElementById("conversionResult").innerText = "Converted value: " + result;
+    }
+</script>
+
+</body>
+</html>
